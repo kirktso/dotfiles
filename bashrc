@@ -51,7 +51,7 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 # Options for less
 export LESS="-R"
 
-for file in ~/.{bash_prompt2.sh,aliases.sh,functions.sh,localrc.sh,secrets.sh}; do
+for file in ~/.{bash_prompt.sh,aliases.sh,functions.sh,localrc.sh,secrets.sh}; do
   [ -r "$file" ] && source "$file"
 done
 unset file
