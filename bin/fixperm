@@ -1,0 +1,19 @@
+#!/bin/bash
+#
+# Script to fix permissions on a directory/file tree
+# All directories will be changed to 755, files to 644
+
+echo
+echo "About to change permissions on directory tree..."
+echo "Your current directory is:"
+pwd
+echo "All directories below the current one will be changed to 755,"
+echo "and all files in those directories will be changed to 644."
+echo "Be sure you are where you want to be, before continuing!"
+read -p "Press Return to begin, or Ctrl-C to abort..."
+
+find . -type d -print0 | xargs -0 chmod 755
+find . -type f -print0 | xargs -0 chmod 644
+
+echo "All permissions fixed!"
+
