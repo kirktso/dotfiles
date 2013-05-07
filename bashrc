@@ -55,8 +55,8 @@ unset file
 
 # rbenv
 # For homenrew this is already in the path
+[[ -s $HOME/.rbenv/bin/rbenv ]] && export PATH="$HOME/.rbenv/bin:$PATH"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-[[ -s $HOME/.rbenv/bin/rbenv ]] && export PATH="$HOME/.rbenv/bin:$HOME"
 
 # Autojump (homebrew, other)
 [[ -s /usr/local/etc/autojump.sh ]] && . /usr/local/etc/autojump.sh
