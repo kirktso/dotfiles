@@ -45,9 +45,6 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 # make `man` use use `less` for paging and not clear the screen upon exit
 export MANPAGER='less -X';
 
-# rb-env
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
 # Options for less
 export LESS="-R"
 
@@ -56,11 +53,16 @@ for file in ~/.{bash_prompt.sh,aliases.sh,functions.sh,localrc.sh,secrets.sh}; d
 done
 unset file
 
-# Homebrew installed autojump
-[[ -s /usr/local/etc/autojump.sh ]] && . /usr/local/etc/autojump.sh
+# rbenv
+# For homenrew this is already in the path
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+[[ -s $HOME/.rbenv/bin/rbenv ]] && export PATH="$HOME/.rbenv/bin:$HOME"
 
-# Homebrew installed shell tab completion
-if [ -f /usr/local/etc/bash_completion ]; then
-  . /usr/local/etc/bash_completion
-fi
+# Autojump (homebrew, other)
+[[ -s /usr/local/etc/autojump.sh ]] && . /usr/local/etc/autojump.sh
+[[ -s /etc/profile.d/autojump.sh ]] && . /etc/profile.d/autojump.sh
+
+# Bash Completions (homebrew, other)
+[[ -f /usr/local/etc/bash_completion ]] && . /usr/local/etc/bash_completion
+[[ -f /etc/bash_completion ]] && . /etc/bash_completion
 
