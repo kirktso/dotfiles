@@ -3,6 +3,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias la='ls -A'
 alias ll='ls -lahF'
+alias vi='vim'
 
 alias gs='git status -sb'
 alias ga='git add '
