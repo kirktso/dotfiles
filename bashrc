@@ -11,7 +11,7 @@ shopt -s histappend
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-export EDITOR=vi
+export EDITOR=vim
 set -o vi
 
 # BSD specific way to add color to ls
