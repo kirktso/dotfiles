@@ -64,7 +64,7 @@ function parse_git_branch () {
 }
 
 prompt_for_dark() {
-  PS1="${TITLE_BAR}${BROWN}\T ${LIGHT_GREEN}\u ${BLUE}\h ${CYAN}\w ${PURPLE}\$(parse_git_branch)\n${LIGHT_GREEN}\$ ${RESET}"
+  PS1="${TITLE_BAR}${BROWN}\t ${LIGHT_GREEN}\u ${BLUE}\h ${CYAN}\w ${PURPLE}\$(parse_git_branch)\n${LIGHT_GREEN}\$ ${RESET}"
 }
 
 plain_prompt() {
