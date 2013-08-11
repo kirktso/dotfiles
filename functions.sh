@@ -26,4 +26,20 @@ function dataurl() {
   echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')"
 }
 
+# Add bundler binstubs to path securely
+# From: https://github.com/sstephenson/rbenv/wiki/Understanding-binstubs
+function binstubs() {
+  export PATH="$PWD/bin:$PATH"
+  hash -r 2>/dev/null || true
+}
 
+# Saw in a railscast, which lead to this:
+# http://www.stefanoforenza.com/how-to-repeat-a-shell-command-n-times/
+repeat() {
+    n=$1
+    shift
+    while [ $(( n -= 1 )) -ge 0 ]
+    do
+        "$@"
+    done
+}
