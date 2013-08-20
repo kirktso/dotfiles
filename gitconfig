@@ -1,8 +1,8 @@
 [core]
   autocrlf = input
   safecrlf = true
-  excludesfile = /Users/kirk/.gitignore_global
-  pager = less -r
+  excludesfile =~/.gitignore_global
+  pager = less -F -X -R
 
 [alias]
   co = checkout
@@ -26,11 +26,10 @@
   changelog = log --pretty=format:\" * %s\"
   hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
   graph = log --graph --pretty=oneline --abbrev-commit
-  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' -n 20 --abbrev-commit --date=relative
+  lg = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar)%Creset'
+  l = !git --no-pager lg
+  la = !git --no-pager lg --all
   d = diff --color-words
-
-#[format]
-#  pretty=format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)an>%Creset
 
 [color]
   diff = auto
@@ -39,21 +38,10 @@
   interactive = auto
   ui = auto
 
-[color "branch"]
-  current = yellow reverse
-  local = yellow
-  remote = green
-
-[color "diff"]
-  meta = yellow bold
-  frag = magenta bold
-  old = red bold
-  new = green bold
-
-[color "status"]
-  added = yellow
-  changed = green
-  untracked = cyan
-
 [gc]
   auto=1
+
+[gui]
+  # This is to make fonts readable in gitk on Linux (Redhat tested only)
+  fontui = -family \"DejaVu Sans\" -size 12 -weight normal -slant roman -underline 0 -overstrike 0
+  fontdiff = -family \"DejaVu Sans Mono\" -size 12 -weight normal -slant roman -underline 0 -overstrike 0
