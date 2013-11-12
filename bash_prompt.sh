@@ -59,8 +59,12 @@ function parse_git_dirty () {
   [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working directory clean" ]] && echo "*"
 }
 
+function check_git_email () {
+  [[ -z $(git config user.email) ]] && echo "!!NO EMAIL SET!!"
+}
+
 function parse_git_branch () {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)\ $(check_git_email)/"
 }
 
 prompt_for_dark() {
