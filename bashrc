@@ -55,7 +55,12 @@ unset file
 
 # rbenv
 # For homenrew this is already in the path
-[[ -s $HOME/.rbenv/bin/rbenv ]] && export PATH="$HOME/.rbenv/bin:$PATH"
+if [ -s $HOME/.rbenv/bin/rbenv ] ; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  # https://twitter.com/tpope/status/165631968996900865
+  export PATH=".git/safe/../../bin:$PATH"
+fi
+
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # Autojump (homebrew, other)

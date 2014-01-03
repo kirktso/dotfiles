@@ -17,6 +17,8 @@
   unstage = reset HEAD
   uncommit = reset --soft HEAD^
   server = !git daemon --reuseaddr --verbose --base-path=. --export-all --base-path-relaxed --enable=receive-pack ./.git ./*/.git ./*.git
+  # https://twitter.com/tpope/status/165631968996900865
+  trust = !mkdir .git/safe
 
   # Log Aliases
   last = log -n1 --stat
