@@ -55,20 +55,29 @@ user_check() {
 }
 
 # https://gist.github.com/henrik/31631
-function parse_git_dirty () {
-  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working directory clean" ]] && echo "*"
-}
+# function parse_git_dirty () {
+#    [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working directory clean" ]] && echo "*"
+# }
+
+# function parse_git_branch () {
+#   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)\ $(check_git_email)/"
+# }
+
+GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWSTASHSTATE=true
 
 function check_git_email () {
-  [[ -z $(git config user.email) ]] && echo "!!NO EMAIL SET!!"
-}
-
-function parse_git_branch () {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)\ $(check_git_email)/"
+  # Only show output if this is a git directory
+  local g="$(__gitdir)"
+  if [ -n "$g" ]; then
+    [[ -z $(git config user.email) ]] && echo "!!NO EMAIL SET!!"
+  fi
 }
 
 prompt_for_dark() {
-  PS1="${TITLE_BAR}${BROWN}\t ${LIGHT_GREEN}\u ${BLUE}\h ${CYAN}\w ${PURPLE}\$(parse_git_branch)\n${LIGHT_GREEN}\$ ${RESET}"
+  #PS1="${TITLE_BAR}${BROWN}\t ${LIGHT_GREEN}\u ${BLUE}\h ${CYAN}\w ${PURPLE}\$(parse_git_branch)\n${LIGHT_GREEN}\$ ${RESET}"
+  #PS1='\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
+  PS1="${TITLE_BAR}${BROWN}\t ${LIGHT_GREEN}\u ${BLUE}\h ${CYAN}\w ${PURPLE}\$(__git_ps1 \"(%s)\")\n\$(check_git_email)${LIGHT_GREEN}\$ ${RESET}"
 }
 
 plain_prompt() {
