@@ -40,3 +40,8 @@ alias simplehttpd='python -m SimpleHTTPServer 8888';
 
 # misc
 alias reload='. ~/.bash_profile'
+
+# for tmux
+# from: http://www.unwiredcouch.com/2013/11/15/my-tmux-setup.html
+alias tma='tmux attach -d -t'
+alias tmit='tmux new -s $(basename $(pwd))'
