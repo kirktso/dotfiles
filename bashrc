@@ -1,11 +1,14 @@
 # HISTORY Settings
 export HISTCONTROL=ignoredups:ignorespace
 export HISTCONTROL=erasedups
-export HISTSIZE=1000
-export HISTFILESIZE=2000
+export HISTSIZE=10000
+export HISTFILESIZE=20000
 
 # append to the history file, don't overwrite it
 shopt -s histappend
+
+# Save and reload the history after each command finishes
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
