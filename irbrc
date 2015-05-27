@@ -2,7 +2,7 @@
   begin 
     require lib 
   rescue LoadError => err
-    $stderr.puts "Couldn't load #{lib}: #{err}"
+    puts "Couldn't load #{lib}: #{err}"
   end
 end
 
@@ -21,7 +21,7 @@ begin
   Wirble.init
   Wirble.colorize
 rescue LoadError => err
-  warn "Couldn't load Wirble: #{err}"
+  puts "Couldn't load Wirble: #{err}"
 end
 
 # awesome_print
@@ -29,7 +29,7 @@ begin
   require 'awesome_print'
   AwesomePrint.irb!
 rescue LoadError => err
-  warn "Couldn't load awesome_print: #{err}"
+  puts "Couldn't load awesome_print: #{err}"
 end
 
 # load .irbrc_rails in rails environments
