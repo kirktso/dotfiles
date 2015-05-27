@@ -29,11 +29,6 @@ if [ -d "/usr/local/bin" ] ; then
     PATH="/usr/local/bin:$PATH"
 fi
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
-
 
 # Less Colors for Man Pages
 # from: http://linuxtidbits.wordpress.com/2009/03/23/less-colors-for-man-pages/
@@ -74,4 +69,9 @@ export PATH=".git/safe/../../bin:$PATH"
 # Bash Completions (homebrew, other)
 [[ -f /usr/local/etc/bash_completion ]] && . /usr/local/etc/bash_completion
 [[ -f /etc/bash_completion ]] && . /etc/bash_completion
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
 
