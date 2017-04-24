@@ -1,8 +1,17 @@
+[include]
+  path = ~/.gitid
+
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+
 [core]
   autocrlf = input
   safecrlf = true
   excludesfile =~/.gitignore_global
   pager = less -F -X -R
+	editor = code --wait 
 
 [alias]
   co = checkout
@@ -47,3 +56,10 @@
   # This is to make fonts readable in gitk on Linux (Redhat tested only)
   fontui = -family \"DejaVu Sans\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
   fontdiff = -family \"DejaVu Sans Mono\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
+
+[diff]
+    tool = default-difftool
+[difftool "default-difftool"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+[merge]
+	tool = code

@@ -74,4 +74,3 @@ export PATH=".git/safe/../../bin:$PATH"
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
-
