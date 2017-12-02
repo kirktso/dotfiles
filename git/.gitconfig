@@ -1,5 +1,5 @@
 [include]
-  path = ~/.gitid
+  path = ~/.gitlocal
 
 [filter "lfs"]
 	clean = git-lfs clean %f
@@ -11,7 +11,7 @@
   safecrlf = true
   excludesfile =~/.gitignore_global
   pager = less -F -X -R
-	editor = code --wait 
+	editor = vim
 
 [alias]
   co = checkout
@@ -63,3 +63,4 @@
     cmd = code --wait --diff $LOCAL $REMOTE
 [merge]
 	tool = code
+

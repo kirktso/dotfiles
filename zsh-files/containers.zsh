@@ -50,4 +50,5 @@ dbash() { docker exec -it $(docker ps -aqf "name=$1") bash; }
 
 alias kc='kubectl'
 
-source <(kubectl completion zsh)
+# source /usr/local/share/zsh/site-functions/_kubectl
+source /usr/local/Bluemix/bx/zsh_autocomplete

@@ -74,3 +74,9 @@ export PATH=".git/safe/../../bin:$PATH"
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
+
+### Added by the Bluemix CLI
+source /usr/local/Bluemix/bx/bash_autocomplete
+
+# added by travis gem
+[ -f /Users/kirk/.travis/travis.sh ] && source /Users/kirk/.travis/travis.sh
