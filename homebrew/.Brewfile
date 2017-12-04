@@ -38,4 +38,5 @@ cask "visual-studio-code"
 cask "iterm2"
 cask "meld"
 cask "minikube"
+cask "docker"
 

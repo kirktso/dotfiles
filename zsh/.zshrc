@@ -11,15 +11,12 @@ export SPACESHIP_BATTERY_SHOW=false
 export RPS1="%{$reset_color%}"
 
 source /usr/local/share/antigen/antigen.zsh
-antigen init .antigenrc
-
-# Path
-export PATH="$HOME/bin:$PATH"
-
-### Added by the Bluemix CLI
-source /usr/local/Bluemix/bx/zsh_autocomplete
+antigen init "${HOME}/.antigenrc"
 
 [ -f "${HOME}/.secrets" ] && source "${HOME}/.secrets"
 
 # added by travis gem
 [ -f /Users/kirk/.travis/travis.sh ] && source /Users/kirk/.travis/travis.sh
+
+# Path
+export PATH="$HOME/bin:$PATH"
