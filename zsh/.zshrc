@@ -15,8 +15,7 @@ antigen init "${HOME}/.antigenrc"
 
 [ -f "${HOME}/.secrets" ] && source "${HOME}/.secrets"
 
-# added by travis gem
-[ -f /Users/kirk/.travis/travis.sh ] && source /Users/kirk/.travis/travis.sh
+[ -f "${HOME}/.zshrc-local" ] && source "${HOME}/.zshrc-local"
 
 # Path
 export PATH="$HOME/bin:$PATH"
