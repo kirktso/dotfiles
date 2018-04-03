@@ -19,8 +19,6 @@ zplug "zsh-users/zsh-autosuggestions"
 
 zplug "supercrabtree/k"
 
-zplug "marzocchi/zsh-notify"
-
 zplug "~/.dotfiles/zsh-files", from:local
 
 # Pure prompt
