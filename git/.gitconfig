@@ -2,16 +2,16 @@
   path = ~/.gitlocal
 
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
+  clean = git-lfs clean %f
+  smudge = git-lfs smudge %f
+  required = true
 
 [core]
   autocrlf = input
   safecrlf = true
   excludesfile =~/.gitignore_global
   pager = less -F -X -R
-	editor = vim
+  editor = code --wait
 
 [alias]
   co = checkout
@@ -62,5 +62,4 @@
 [difftool "default-difftool"]
     cmd = code --wait --diff $LOCAL $REMOTE
 [merge]
-	tool = code
-
+  tool = code
