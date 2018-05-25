@@ -9,14 +9,15 @@
 [core]
   autocrlf = input
   safecrlf = true
-  excludesfile =~/.gitignore_global
+  excludesfile = ~/.gitignore_global
   pager = less -F -X -R
-  editor = code --wait
+  editor = vim
 
 [alias]
   co = checkout
   ci = commit
   st = status
+  s = status -s
   br = branch
   type = cat-file -t
   dump = cat-file -p
@@ -29,6 +30,20 @@
   # https://twitter.com/tpope/status/165631968996900865
   trust = !mkdir .git/safe
 
+	# Show verbose output about tags, branches or remotes
+	tags = tag -l
+	branches = branch -a
+	remotes = remote -v
+
+  # Switch to a branch, creating it if necessary
+	gcb = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
+
+  	# List aliases
+	aliases = config --get-regexp alias
+
+	# Amend the currently staged files to the latest commit
+	amend = commit --amend --reuse-message=HEAD
+
   # Log Aliases
   last = log -n1 --stat
   changes = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
@@ -39,15 +54,43 @@
   graph = log --graph --pretty=oneline --abbrev-commit
   lg = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar)%Creset'
   l = !git --no-pager lg
+#  l = log --pretty=oneline -n 20 --graph --abbrev-commit
   la = !git --no-pager lg --all
+
   d = diff --color-words
+  	# Show the diff between the latest commit and the current state
+	d1 = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+
+	# `git di $number` shows the diff between the state `$number` revisions ago and the current state
+	di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
+
+  branches = branch --sort=-committerdate --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
 
 [color]
-  diff = auto
-  status = auto
-  branch = auto
-  interactive = auto
   ui = auto
+
+[color "branch"]
+
+	current = yellow reverse
+	local = yellow
+	remote = green
+
+[color "diff"]
+
+	meta = yellow bold
+	frag = magenta bold # line info
+	old = red # deletions
+	new = green # additions
+
+[color "status"]
+
+	added = yellow
+	changed = green
+	untracked = cyan
+
+[commit]
+	# https://help.github.com/articles/signing-commits-using-gpg/
+	# gpgsign = true
 
 [gc]
   auto=1
@@ -58,8 +101,12 @@
   fontdiff = -family \"DejaVu Sans Mono\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
 
 [diff]
-    tool = default-difftool
+	# Detect copies as well as renames
+	renames = copies
+  tool = meld
+
 [difftool "default-difftool"]
-    cmd = code --wait --diff $LOCAL $REMOTE
+  cmd = code --wait --diff $LOCAL $REMOTE
+
 [merge]
   tool = code
