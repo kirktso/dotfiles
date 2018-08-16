@@ -3,6 +3,12 @@ function mkd() {
   mkdir -p "$@" && cd "$@"
 }
 
+
+function viw() {
+  file "$(which "$1")"
+  ls -ld "$(which "$1")"
+}
+
 # Determine size of a file or total size of a directory
 function fs() {
   if du -b /dev/null > /dev/null 2>&1; then
