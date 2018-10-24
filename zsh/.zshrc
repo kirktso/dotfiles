@@ -8,15 +8,14 @@ fi
 source ~/.zplug/init.zsh
 
 # Load the oh-my-zsh's library
+#zplug "plugins/colored-man-pages", from:oh-my-zsh, as:plugin
+#zplug "zsh-users/zsh-history-substring-search"
+
 zplug "lib/history", from:oh-my-zsh
 zplug "plugins/vi-mode", from:oh-my-zsh, as:plugin
 zplug "plugins/autojump", from:oh-my-zsh, as:plugin
-zplug "plugins/colored-man-pages", from:oh-my-zsh, as:plugin
-
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-autosuggestions"
-
 zplug "supercrabtree/k"
 
 zplug "~/.dotfiles/zsh-files", from:local
@@ -43,6 +42,7 @@ export EDITOR='code --wait'
 
 # Completion
 source <(kubectl completion zsh)
+source <(helm completion zsh)
 zstyle ':completion:*' menu select
 # Take advantage of $LS_COLORS for completion as well.
 export LS_COLORS="di=1;34:ln=1;35:so=1;31:pi=1;33:ex=1;32:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
@@ -58,3 +58,5 @@ export LSCOLORS="ExFxBxDxCxegedabagacad"
 
 # Path
 export PATH="$HOME/bin:$PATH"
+
+source /Users/kirk/.dotfiles/zsh-files/man-pages.zsh
