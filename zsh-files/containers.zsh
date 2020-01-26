@@ -39,7 +39,7 @@ alias drmf='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 # OLD - dri() { docker rmi $(docker images -q); }
 dri() { docker rmi $(docker images --format "{{.Repository}}:{{.Tag}}"); }
 
-# Dockerfile build, e.g., $dbu tcnksm/test 
+# Dockerfile build, e.g., $dbu tcnksm/test
 dbu() { docker build -t=$1 .; }
 
 # Show all alias related docker
@@ -51,3 +51,10 @@ dbash() { docker exec -it $(docker ps -aqf "name=$1") bash; }
 # kubectl
 alias kc='kubectl'
 
+alias kg='kubectl get'
+alias kl='kubectl logs '
+alias klf='kubectl logs -f '
+alias kfl='kubectl logs -f '
+alias kx='kubectl exec -i -t'
+
+alias kgp='kubectl get pods'
