@@ -10,7 +10,7 @@
   autocrlf = input
   safecrlf = true
   excludesfile = ~/.gitignore_global
-  pager = less -F -X -R
+	pager = diff-so-fancy | less --tabs=4 -RFX
   editor = vim
 
 [alias]
@@ -67,7 +67,7 @@
   branches = branch --sort=-committerdate --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
 
 [color]
-  ui = auto
+	ui = true
 
 [color "branch"]
 
@@ -77,10 +77,12 @@
 
 [color "diff"]
 
-	meta = yellow bold
-	frag = magenta bold # line info
-	old = red # deletions
-	new = green # additions
+	meta = 11
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	commit = yellow bold
+	whitespace = red reverse
 
 [color "status"]
 
@@ -110,3 +112,8 @@
 
 [merge]
   tool = code
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
