@@ -9,9 +9,6 @@ fi
 # Essential
 source ~/.zplug/init.zsh
 
-# Load the oh-my-zsh's library
-#zplug "plugins/colored-man-pages", from:oh-my-zsh, as:plugin
-#zplug "zsh-users/zsh-history-substring-search"
 #zplug "plugins/vi-mode", from:oh-my-zsh, as:plugin
 
 zplug "lib/history", from:oh-my-zsh
@@ -45,7 +42,6 @@ export LS_COLORS="di=1;34:ln=1;35:so=1;31:pi=1;33:ex=1;32:bd=34;46:cd=34;43:su=3
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 
-#export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
 export LSCOLORS="ExFxBxDxCxegedabagacad"
 
 # Source local/private files
