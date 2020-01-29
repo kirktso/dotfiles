@@ -9,13 +9,10 @@ fi
 # Essential
 source ~/.zplug/init.zsh
 
-#zplug "plugins/vi-mode", from:oh-my-zsh, as:plugin
-
 zplug "lib/history", from:oh-my-zsh
 zplug "plugins/autojump", from:oh-my-zsh, as:plugin
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-autosuggestions"
-zplug "supercrabtree/k"
 
 zplug "~/.dotfiles/zsh-files", from:local
 
