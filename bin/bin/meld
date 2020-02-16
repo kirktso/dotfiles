@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Fixes Meld on macOS
+# https://github.com/Homebrew/homebrew-cask/pull/69864/files
+
+rm -rf ~/Library/Saved\ Application\ State/org.gnome.meld.savedState
+/usr/local/bin/meld "$@"
