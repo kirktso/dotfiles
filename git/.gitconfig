@@ -1,119 +1,141 @@
 [include]
   path = ~/.gitlocal
 
-[filter "lfs"]
-  clean = git-lfs clean %f
-  smudge = git-lfs smudge %f
-  required = true
-
-[core]
-  autocrlf = input
-  safecrlf = true
-  excludesfile = ~/.gitignore_global
-	pager = diff-so-fancy | less --tabs=4 -RFX
-  editor = vim
-
-[alias]
-  co = checkout
-  ci = commit
-  st = status
-  s = status -s
-  br = branch
-  type = cat-file -t
-  dump = cat-file -p
-  b = branch -va
-  r = remote -v
-  t = tag -l
-  unstage = reset HEAD
-  uncommit = reset --soft HEAD^
-  server = !git daemon --reuseaddr --verbose --base-path=. --export-all --base-path-relaxed --enable=receive-pack ./.git ./*/.git ./*.git
-  # https://twitter.com/tpope/status/165631968996900865
-  trust = !mkdir .git/safe
-
-	# Show verbose output about tags, branches or remotes
-	tags = tag -l
-	branches = branch -a
-	remotes = remote -v
-
-  # Switch to a branch, creating it if necessary
-	gcb = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
-
-  	# List aliases
-	aliases = config --get-regexp alias
-
-	# Amend the currently staged files to the latest commit
-	amend = commit --amend --reuse-message=HEAD
-
-  # Log Aliases
-  last = log -n1 --stat
-  changes = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
-  short = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
-  filelog = log -u  # show changes to a file
-  changelog = log --pretty=format:\" * %s\"
-  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-  graph = log --graph --pretty=oneline --abbrev-commit
-  lg = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar)%Creset'
-  l = !git --no-pager lg
-#  l = log --pretty=oneline -n 20 --graph --abbrev-commit
-  la = !git --no-pager lg --all
-
-  d = diff --color-words
-  	# Show the diff between the latest commit and the current state
-	d1 = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
-
-	# `git di $number` shows the diff between the state `$number` revisions ago and the current state
-	di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
-
-  branches = branch --sort=-committerdate --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
-
 [color]
+  branch = always
+  diff = always
+  grep = always
+  interactive = always
+  pager = true
+  showbranch = auto
+  status = auto
 	ui = true
 
+[color "interactive"]
+  error = red bold
+
 [color "branch"]
-
-	current = yellow reverse
-	local = yellow
-	remote = green
-
-[color "diff"]
-
-	meta = 11
-	frag = magenta bold
-	old = red bold
-	new = green bold
-	commit = yellow bold
-	whitespace = red reverse
+  current = yellow reverse
+  local = yellow
+  remote = green
 
 [color "status"]
-
-	added = yellow
-	changed = green
-	untracked = cyan
+  added = yellow
+  changed = green
+  untracked = cyan
+  branch = magenta
 
 [commit]
 	# https://help.github.com/articles/signing-commits-using-gpg/
 	# gpgsign = true
 
-[gc]
-  auto=1
-
-[gui]
-  # This is to make fonts readable in gitk on Linux (Redhat tested only)
-  fontui = -family \"DejaVu Sans\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
-  fontdiff = -family \"DejaVu Sans Mono\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
+[core]
+  excludesfile = ~/.gitignore_global
+  # pager = less -FRSX
+	pager = diff-so-fancy | less --tabs=4 -RFX
+  editor = vim
+  autocrlf = input
+  safecrlf = true
 
 [diff]
-	# Detect copies as well as renames
-	renames = copies
-  tool = meld
+    tool = meld
 
-[difftool "default-difftool"]
-  cmd = code --wait --diff $LOCAL $REMOTE
+[difftool]
+    prompt = false
 
-[merge]
-  tool = code
+[alias]
+  # List aliases
+  aliases = config --get-regexp alias
+
+  # branch
+  b  = branch
+  bc = checkout -b
+  bl = branch -v
+  bL = branch -av
+  bx = branch -d
+  bX = branch -D
+  bm = branch -m
+  bM = branch -M
+  bs = show-branch
+  bS = show-branch -a
+  branches = branch --sort=-committerdate --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+
+  # checkout/fetch/merge/push/rebase
+  # checkout
+  co  = checkout
+  co0 = checkout HEAD --
+
+  # fetch
+  f   = fetch
+  fm  = pull
+  fo  = fetch origin
+
+  # merge
+  m   = merge
+  mom = merge origin/master
+
+  # push
+  p   = push
+  pa  = push --all
+  pt  = push --tags
+
+  # rebase
+  r   = rebase
+  ra  = rebase --abort
+  rc  = rebase --continue
+  ri  = rebase --interactive
+  rs  = rebase --skip
+  rom = rebase origin/master
+
+  # commit
+  c      = commit -v
+  ci     = commi
+  ca     = commit --all -v
+  cm     = commit --message
+  cam    = commit --all --message
+  camend = commit --amend --reuse-message HEAD
+  cundo  = reset --soft "HEAD^"
+
+  # diff
+  d    = diff          # Diff working dir to index
+  ds   = diff --staged # Diff index to HEAD
+  dh   = diff HEAD     # Diff working dir and index to HEAD
+
+  # index
+  s  = status
+  a  = add
+  ir = reset
+  unstage = reset HEAD
+  uncommit = reset --soft HEAD^
+
+  # log
+  last = log -n1 --stat
+  l   = log --topo-order --pretty=format:'%C(yellow)%h %C(cyan)%cn %C(blue)%cr%C(reset) %s'
+  ls  = log --topo-order --stat --pretty=format:'%C(bold)%C(yellow)Commit:%C(reset) %C(yellow)%H%C(red)%d%n%C(bold)%C(yellow)Author:%C(reset) %C(cyan)%an <%ae>%n%C(bold)%C(yellow)Date:%C(reset)   %C(blue)%ai (%ar)%C(reset)%n%+B'
+  ld  = log --topo-order --stat --patch --full-diff --pretty=format:'%C(bold)%C(yellow)Commit:%C(reset) %C(yellow)%H%C(red)%d%n%C(bold)%C(yellow)Author:%C(reset) %C(cyan)%an <%ae>%n%C(bold)%C(yellow)Date:%C(reset)   %C(blue)%ai (%ar)%C(reset)%n%+B'
+  lg  = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  lga = log --topo-order --all --graph --pretty=format:'%C(yellow)%h %C(cyan)%cn%C(reset) %s %C(red)%d%C(reset)%n'
+  lm  = log --topo-order --pretty=format:'%s'
+  lh  = shortlog --summary --numbered
+  lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+  lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+
+  # remote
+  re  = remote
+  rel = remote --verbose
+
+# diff-so-fancy color suggestions
+# https://github.com/so-fancy/diff-so-fancy
 [color "diff-highlight"]
 	oldNormal = red bold
 	oldHighlight = red bold 52
 	newNormal = green bold
 	newHighlight = green bold 22
+
+[color "diff"]
+	meta = 11
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+	commit = yellow bold
