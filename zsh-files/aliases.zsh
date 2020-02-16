@@ -1,10 +1,11 @@
-alias dot-edit="code -n ~/.dotfiles"
-alias ls='ls -FG'
+alias dot-edit="code -n ~/Developer/dotfiles.code-workspace"
 
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+
 alias la='ls -A'
+alias ls='ls -FG'
 alias ll='ls -lahF'
 alias vi='vim'
 
@@ -16,37 +17,28 @@ alias df='df -h'
 alias du='du -h'
 
 # useful command to find what you should be aliasing:
-alias profileme="history | awk '{print \$2}' | awk 'BEGIN{FS=\"|\"}{print \$1}' | sort | uniq -c | sort -n | tail -n 20 | sort -nr"
+alias profile-me="history | awk '{print \$2}' | awk 'BEGIN{FS=\"|\"}{print \$1}' | sort | uniq -c | sort -n | tail -n 20 | sort -nr"
 
 #alias ..='cd ..;' # can then do .. .. .. to move up multiple directories.
 #alias ...='.. ..'
 
-alias ip="curl -s http://checkip.dyndns.com/ | sed 's/[^0-9\.]//g'"
-alias localip="ipconfig getifaddr en1"
 alias ll='tree --dirsfirst -ChFupDaLg 1'
 
 # alias `simplehttpd` to start a simple webserver in the current director
 alias simplehttpd='python -m SimpleHTTPServer 8888';
-
-# for tmux
-# from: http://www.unwiredcouch.com/2013/11/15/my-tmux-setup.html
-alias tma='tmux attach -d -t'
-alias tmit='tmux new -s $(basename $(pwd))'
-
-######
 
 alias aliases="alias | sed 's/=.*//'"
 alias functions="declare -f | grep '^[a-z].* ()' | sed 's/{$//'"
 alias paths='echo -e ${PATH//:/\\n}'
 
 # Network
-
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias ip="curl -s http://checkip.dyndns.com/ | sed 's/[^0-9\.]//g'"
+alias localip="ipconfig getifaddr en1"
+alias ip2="dig +short myip.opendns.com @resolver1.opendns.com"
 alias ipl="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
 
 alias psgrep="psgrep -i"
 
-alias hs='history | grep "${1}"'
 alias json="python -m json.tool"
 
 # Detect which `ls` flavor is in use
@@ -60,7 +52,7 @@ fi
 
 # From: https://github.com/alexrochas/dotfiles/blob/master/home/.zsh/aliases.zsh
 alias infinite='function _while(){while true; do eval "$1"; done;};_while'
-alias lg='git-explorer explore --light'
+
 alias dev='cd ~/Developer'
 
 alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
