@@ -1,7 +1,7 @@
 brew "git"
 brew "tmux"
 brew "vim"
-brew "gpg"
+brew "gnupg"
 brew "pinentry-mac"
 brew "stow"
 brew "hub"
