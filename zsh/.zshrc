@@ -9,8 +9,6 @@ fi
 # Essential
 source ~/.zplug/init.zsh
 
-zplug "lib/history", from:oh-my-zsh
-zplug "plugins/autojump", from:oh-my-zsh, as:plugin
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-autosuggestions"
 
@@ -29,6 +27,8 @@ fi
 zplug load
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 export EDITOR='code --wait'
 
